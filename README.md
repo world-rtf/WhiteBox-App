@@ -1,5 +1,6 @@
 # WhiteBox News
 ## Getting Started
+![Описание GIF](h.gif)
 
 First, run the development server:
 
