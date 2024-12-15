@@ -1,6 +1,7 @@
 # WhiteBox News
-## Getting Started
+![gif](h.gif)
 
+## Getting Started
 First, run the development server:
 
 ```bash
