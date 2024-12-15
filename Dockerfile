@@ -11,7 +11,6 @@ RUN npx prisma generate
 RUN npx prisma migrate deploy
 RUN npx prisma db seed
 
-# что б говно не вскакивало
 ENV ESLINT_NO_DEV_ERRORS=true
 
 RUN npm run build
