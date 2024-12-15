@@ -9,7 +9,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: ["ts-node", "prisma/seed.ts"]
+    # command: ["ts-node", "prisma/seed.ts"]
     ports:
       - "3000:3000"
     environment:
