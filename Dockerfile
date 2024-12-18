@@ -4,15 +4,10 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm install
-# RUN npm ci
+RUN npm ci
 COPY . .
 
 RUN npx prisma generate
-# RUN npx prisma migrate deploy
-# RUN npx prisma db seed
-RUN npx prisma generate
-# ENV ESLINT_NO_DEV_ERRORS=true
 
 RUN npm run build
 CMD ["npm", "run", "start"]
