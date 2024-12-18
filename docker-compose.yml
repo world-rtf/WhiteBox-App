@@ -1,6 +1,22 @@
 version: "3.8"
 
 services:
+
+  db:
+    image: postgres
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: mydatabase
+    ports:
+      - "5433:5432"  
+    # volumes:
+    #   - postgres_data:/var/lib/postgresql/data
+
+
+
   news-site:
     container_name: news-site
     working_dir: /app
@@ -16,31 +32,19 @@ services:
       DATABASE_URL: postgres://postgres:1234@db:5432/mydatabase
     depends_on:
       - db
-    command: sh -c "npm install && npx prisma migrate dev --name init && npx tsx ./prisma/seed.ts && npm run dev"
+    command: sh -c "npm install && npx prisma migrate dev --name init && npx tsx ./prisma/seed.ts && npm run start"
 
-  db:
-    image: postgres
-    container_name: postgres_db
-    restart: always
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 1234
-      POSTGRES_DB: mydatabase
-    ports:
-      - "5433:5432"  
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
 
-  nginx:
-    image: nginx:1.21.0
-    container_name: nginx_proxy
-    restart: always
-    ports:
-      - "81:80"
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
-    depends_on:
-      - news-site
+  # nginx:
+  #   image: nginx:1.21.0
+  #   container_name: nginx_proxy
+  #   restart: always
+  #   ports:
+  #     - "81:80"
+  #   volumes:
+  #     - ./nginx.conf:/etc/nginx/nginx.conf:ro
+  #   depends_on:
+  #     - news-site
 
 volumes:
   postgres_data:

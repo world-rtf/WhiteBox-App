@@ -1,7 +1,7 @@
 import { getAllNews } from "@/app/lib/script";
 import Header from "@/app/ui/Header";
 
-// говнище, без которого не работает build
+// не работает build
 interface NewsPageProps {
     params: Promise<{ slug: string }>;
 }
